@@ -1,0 +1,27 @@
+{
+  "name": "cordova-plugin-mifare-ultralight",
+  "version": "1.0.0",
+  "description": "Provides Mifare Ultralight functionality for Cordova-based applications",
+  "main": "www/cordova-plugin-mifare-ultralight.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "mifare",
+    "ultralight",
+    "android",
+    "javascript"
+  ],
+  "author": "Roope Hakulinen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/issues"
+  },
+  "homepage": "https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight#readme"
+}
