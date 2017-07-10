@@ -241,7 +241,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
     }
 
     private void fireTagEvent(Tag tag, String name) {
-        String command = MessageFormat.format(javaScriptEventTemplate, name, new JSONObject());
+        String command = MessageFormat.format(javaScriptEventTemplate, name, byteArrayToJSON(tag.getId()));
         this.webView.sendJavascript(command);
     }
 

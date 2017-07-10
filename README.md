@@ -40,6 +40,8 @@ document.addEventListener('mifareTagDiscovered', (tag) => {
 });
 ```
 
+The tag passed as parameter contains tag id as an array of bytes as returned by `Tag` class method [`getId()`](https://developer.android.com/reference/android/nfc/Tag.html#getId()). 
+
 ### Methods
 All methods provided can be found via `window.mifare`. If you are using TypeScript, you'll need to add this line on top of each file where you intend to access the plugin:
 
