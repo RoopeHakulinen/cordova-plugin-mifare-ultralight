@@ -257,7 +257,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
     static JSONArray byteArrayToJSON(byte[] bytes) {
         JSONArray json = new JSONArray();
         for (byte aByte : bytes) {
-            json.put(aByte);
+            json.put(aByte & 0xFF);
         }
         return json;
     }
