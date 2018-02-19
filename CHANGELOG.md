@@ -1,3 +1,8 @@
+<a name="1.0.2"></a>
+# [1.0.2](https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/blob/master/CHANGELOG.md#1.0.2) (2018-02-19)
+
+Fix the format of tag on _mifareTagDiscovered_ event.
+
 <a name="1.0.1"></a>
 # [1.0.1](https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/blob/master/CHANGELOG.md#1.0.1) (2017-07-10)
 
