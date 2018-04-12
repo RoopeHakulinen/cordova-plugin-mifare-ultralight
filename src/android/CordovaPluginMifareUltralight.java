@@ -231,8 +231,12 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
                     return;
                 }
                 try {
-                    mifareUltralight.unlockWithPin(pin);
-                    callbackContext.success();
+                    final boolean success = mifareUltralight.unlockWithPin(pin);
+                    if (success) {
+                        callbackContext.success();
+                    } else {
+                        callbackContext.error("Incorrect PIN");
+                    }
                 } catch (final Exception e) {
                     clean(callbackContext, e);
                 }
