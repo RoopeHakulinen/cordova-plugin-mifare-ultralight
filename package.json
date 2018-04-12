@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-mifare-ultralight",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Provides Mifare Ultralight functionality for Cordova-based applications",
   "main": "www/cordova-plugin-mifare-ultralight.js",
   "scripts": {
