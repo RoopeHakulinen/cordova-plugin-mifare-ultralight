@@ -170,7 +170,7 @@ window.mifare.lockMF0UL21(37, 0x1234, true, 0, () => alert('Locked successfully'
 ```
 
 #### mifare.lock
-`mifare.lock(pin, success, failure)`
+`mifare.lock(pinPage, pinAckPage, protectionPage, firstPageToBeProtectedPage, firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
 
 Tries to lock the tag. 
 
@@ -189,7 +189,7 @@ Tries to lock the tag.
 
 ##### Example
 ```javascript
-window.mifare.lock(, () => alert('Locked successfully'), err => alert(`Couldn't lock because ${err}`));
+window.mifare.lock(21, 22, 23, 24, 37, 0x1234, true, 0, () => alert('Locked successfully'), err => alert(`Couldn't lock because ${err}`));
 ```
 
 ## FAQ
