@@ -50,6 +50,6 @@ public class MifareUltralight {
     }
 
     private byte[] longToByteArray(long number) {
-        return ByteBuffer.allocate(4).putLong(number).array();
+        return ByteBuffer.allocate(8).putLong(number).array();
     }
 }
