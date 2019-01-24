@@ -99,7 +99,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
             return true;
         } else if (action.equals("unlock")) {
             final String arg0 = args.getString(0);
-            final int pin = Integer.parseInt(arg0);
+            final long pin = Long.parseLong(arg0);
             this.unlock(callbackContext, pin);
             return true;
         }
@@ -216,7 +216,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
         });
     }
 
-    private void unlock(final CallbackContext callbackContext, final int pin) {
+    private void unlock(final CallbackContext callbackContext, final long pin) {
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {

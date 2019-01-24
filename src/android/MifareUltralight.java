@@ -22,8 +22,8 @@ public class MifareUltralight {
         mifare = null;
     }
 
-    public boolean unlockWithPin(int pin) throws Exception {
-        final byte[] pinAsByteArray = intToByteArray(pin);
+    public boolean unlockWithPin(long pin) throws Exception {
+        final byte[] pinAsByteArray = longToByteArray(pin);
         byte[] response = mifare.transceive(new byte[]{
                 (byte) 0x1B, // PWD_AUTH
                 pinAsByteArray[0], pinAsByteArray[1], pinAsByteArray[2], pinAsByteArray[3]
@@ -49,7 +49,7 @@ public class MifareUltralight {
         mifare.writePage(pageOffset, data);
     }
 
-    private byte[] intToByteArray(int number) {
-        return ByteBuffer.allocate(4).putInt(number).array();
+    private byte[] longToByteArray(long number) {
+        return ByteBuffer.allocate(4).putLong(number).array();
     }
 }
