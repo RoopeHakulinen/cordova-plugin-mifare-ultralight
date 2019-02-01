@@ -1,3 +1,8 @@
+<a name="1.0.4"></a>
+# [1.0.4](https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/blob/master/CHANGELOG.md#1.0.4) (2019-02-01)
+
+Allow unlocking with a number that is in Java in the value range of `Long`. Earlier only `Int` values were allowed. This should be a non-breaking change as the numbers are only passed from JavaScript where there is only a `number` type covering for both Java side data types.
+
 <a name="1.0.3"></a>
 # [1.0.3](https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/blob/master/CHANGELOG.md#1.0.3) (2018-04-12)
 
