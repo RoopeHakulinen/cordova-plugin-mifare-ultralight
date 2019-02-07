@@ -134,7 +134,7 @@ window.mifare.unlock(0x1234, (response) => alert('Unlocked successfully'), err =
 ```
 
 #### mifare.lockNTAG212
-`mifare.lockNTAG212(firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, failure)`
+`mifare.lockNTAG212(firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
 
 Tries to lock the tag of type `NTAG212`. For other tag types see the other methods starting with word `lock`. 
 
@@ -146,7 +146,7 @@ window.mifare.lockMF0UL11(37, 0x1234, true, 0, () => alert('Locked successfully'
 ```
 
 #### mifare.lockMF0UL11
-`mifare.lockMF0UL11(firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, failure)`
+`mifare.lockMF0UL11(firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
 
 Tries to lock the tag of type `MF0UL11`. For other tag types see the other methods starting with word `lock`. 
 
@@ -158,7 +158,7 @@ window.mifare.lockMF0UL11(37, 0x1234, true, 0, () => alert('Locked successfully'
 ```
 
 #### mifare.lockMF0UL21
-`mifare.lockMF0UL21(firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, failure)`
+`mifare.lockMF0UL21(firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
 
 Tries to lock the tag of type `MF0UL21`. For other tag types see the other methods starting with word `lock`. 
 

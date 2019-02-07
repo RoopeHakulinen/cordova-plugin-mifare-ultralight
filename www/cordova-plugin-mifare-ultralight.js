@@ -53,14 +53,14 @@ exports.lock = function (
     ]);
 };
 
-exports.lockNTAG212 = function (firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, error) {
-    exports.lock(39, 40, 38, 37, firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, error);
+exports.lockNTAG212 = function (firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, error) {
+    exports.lock(39, 40, 38, 37, firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, error);
 };
 
-exports.lockMF0UL11 = function (firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, error) {
-    exports.lock(12, 13, 11, 10, firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, error);
+exports.lockMF0UL11 = function (firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, error) {
+    exports.lock(12, 13, 11, 10, firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, error);
 };
 
-exports.lockMF0UL21 = function (firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, error) {
-    exports.lock(27, 28, 26, 25, firstPageToBeProtected, pin, protectAlsoWrites, authenticationTryLimit, success, error);
+exports.lockMF0UL21 = function (firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, error) {
+    exports.lock(27, 28, 26, 25, firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, error);
 };
