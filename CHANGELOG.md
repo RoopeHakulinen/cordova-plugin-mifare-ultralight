@@ -1,3 +1,8 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/blob/master/CHANGELOG.md#1.1.0) (2018-06-15)
+
+Add possibility to lock different kinds of tags with a PIN code.
+
 <a name="1.0.4"></a>
 # [1.0.4](https://github.com/RoopeHakulinen/cordova-plugin-mifare-ultralight/blob/master/CHANGELOG.md#1.0.4) (2019-02-01)
 

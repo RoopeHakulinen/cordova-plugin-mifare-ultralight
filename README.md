@@ -3,7 +3,7 @@
 This plugins lets you interact with Mifare Ultralight NFC tags on Android devices. You can use it to
 - Detect Mifare Ultralight tag near-by the device.
 - Connect/disconnet with Mifare Ultralight tags.
-- Unlock Mifare Ultralight tags with PIN.
+- Lock/unlock Mifare Ultralight tags with PIN.
 - Read Mifare Ultralight tags.
 - Write Mifare Ultralight tags.
 - Check if NFC is enabled on the device.
@@ -57,6 +57,10 @@ Available methods:
 * [mifare.read](#mifareread)
 * [mifare.write](#mifarewrite)
 * [mifare.unlock](#mifareunlock)
+* [mifare.lockNTAG212](#mifarelockntag212)
+* [mifare.lockMF0UL11](#mifarelockmf0ul11)
+* [mifare.lockMF0UL21](#mifarelockmf0ul21)
+* [mifare.lock](#mifarelock)
 
 #### mifare.enabled
 `mifare.enabled(success, failure)`
@@ -129,6 +133,65 @@ Tries to unlock the tag. Parameter `pin` should be a number.
 window.mifare.unlock(0x1234, (response) => alert('Unlocked successfully'), err => alert(`Couldn't unlock because ${err}`));
 ```
 
+#### mifare.lockNTAG212
+`mifare.lockNTAG212(firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
+
+Tries to lock the tag of type `NTAG212`. For other tag types see the other methods starting with word `lock`. 
+
+For parameter details see the options table under [`parameters in lock method`](Parameters).
+
+##### Example
+```javascript
+window.mifare.lockMF0UL11(37, 0x1234, true, 0, () => alert('Locked successfully'), err => alert(`Couldn't lock because ${err}`));
+```
+
+#### mifare.lockMF0UL11
+`mifare.lockMF0UL11(firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
+
+Tries to lock the tag of type `MF0UL11`. For other tag types see the other methods starting with word `lock`. 
+
+For parameter details see the options table under [`parameters in lock method`](Parameters).
+
+##### Example
+```javascript
+window.mifare.lockMF0UL11(37, 0x1234, true, 0, () => alert('Locked successfully'), err => alert(`Couldn't lock because ${err}`));
+```
+
+#### mifare.lockMF0UL21
+`mifare.lockMF0UL21(firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
+
+Tries to lock the tag of type `MF0UL21`. For other tag types see the other methods starting with word `lock`. 
+
+For parameter details see the options table under [`parameters in lock method`](Parameters).
+
+##### Example
+```javascript
+window.mifare.lockMF0UL21(37, 0x1234, true, 0, () => alert('Locked successfully'), err => alert(`Couldn't lock because ${err}`));
+```
+
+#### mifare.lock
+`mifare.lock(pinPage, pinAckPage, protectionPage, firstPageToBeProtectedPage, firstPageToBeProtected, pin, protectAlsoReads, authenticationTryLimit, success, failure)`
+
+Tries to lock the tag. 
+
+*Please note that this command is the raw command used by the above vendor-specific ones. You need to know the pages you want to be using to use this method.*
+
+##### Parameters
+*pinPage*: Page number for the PIN setting page (e.g. `39`) 
+*pinAckPage*: Page number for the PIN acknowledgement page (e.g. `40`)
+*protectionPage*: Page number for the protection page (e.g. `38`)
+*firstPageToBeProtectedPage*: Page number for the first page to be protected page (e.g. `37`)
+
+*firstPageToBeProtected*: Page number from which onwards to enable the protection (e.g. `41`) 
+*pin*: Pin to lock the tag with (e.g. 0x1234)
+*protectAlsoReads*: Whether the reads should be protected along with writes (`false` for only protecting writes, `read` for protecting reads and writes)
+*authenticationTryLimit*: How many times unlocking can be tried with invalid PIN. Value should be between 0-7. 0 means no limit is applied.
+
+##### Example
+```javascript
+window.mifare.lock(21, 22, 23, 24, 37, 0x1234, true, 0, () => alert('Locked successfully'), err => alert(`Couldn't lock because ${err}`));
+```
+
 ## FAQ
 
 *Q: Why is there no version to iOS or Windows Phone?*
@@ -146,6 +209,10 @@ A: Not yet unfortunately. It is something on the todo list for sure, though.
 *Q: Why is there no event for tag lost?*
 
 A: I would be happy to take in a Pull Request for this. It seemed somewhat cumbersome to implement.. Maybe at some point I will find the motivation to add it.
+
+*Q: What is the difference between the lock methods?*
+
+A: Different tag types use different page numbers. For example `NTAG212` tags use pages numbered 39, 40, 38 and 37. These pages can all be adjusted by using the "raw" `lock` method but for your convenience there exists separate methods for different tag types that use the default page numbers.
 
 ## Kudos
 This plugin is heavily influenced by the excellent work done on [PhoneGap NFC Plugin](https://github.com/chariotsolutions/phonegap-nfc). Thank you for the effort you have put into it over the years.

@@ -1,24 +1,20 @@
 package fi.roopehakulinen.CordovaPluginMifareUltralight;
 
-import org.apache.cordova.*;
-
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
+import org.apache.cordova.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -101,6 +97,37 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
             final String arg0 = args.getString(0);
             final long pin = Long.parseLong(arg0);
             this.unlock(callbackContext, pin);
+            return true;
+        } else if (action.equals("lock")) {
+            final String arg0 = args.getString(0);
+            final String arg1 = args.getString(1);
+            final String arg2 = args.getString(2);
+            final String arg3 = args.getString(3);
+            final String arg4 = args.getString(4);
+            final String arg5 = args.getBoolean(5);
+            final String arg6 = args.getBoolean(6);
+            final String arg7 = args.getString(7);
+
+            final int pinPage = Integer.parseInt(arg0);
+            final int pinAckPage = Integer.parseInt(arg1);
+            final int protectionPage = Integer.parseInt(arg2);
+            final int firstPageToBeProtectedPage = Integer.parseInt(arg3);
+            final int firstPageToBeProtected = Integer.parseInt(arg4);
+            final long pin = Long.parseLong(arg5);
+            final boolean protectAlsoReads = arg6;
+            final int authenticationTryLimit = Integer.parseInt(arg7);
+
+            this.lock(
+                    callbackContext,
+                    pinPage,
+                    pinAckPage,
+                    protectionPage,
+                    firstPageToBeProtectedPage,
+                    firstPageToBeProtected,
+                    pin,
+                    protectAlsoReads,
+                    authenticationTryLimit
+            );
             return true;
         }
         return false;
@@ -244,6 +271,34 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
         });
     }
 
+    private void lock(final CallbackContext callbackContext, final long pin) {
+        cordova.getThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                if (getIntent() == null) { // Lost Tag
+                    clean(callbackContext, "No tag available.");
+                    return;
+                }
+
+                final Tag tag = savedIntent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                if (tag == null) {
+                    clean(callbackContext, "No tag available.");
+                    return;
+                }
+                try {
+                    final boolean success = mifareUltralight.lockWithPin(page, pin);
+                    if (success) {
+                        callbackContext.success();
+                    } else {
+                        callbackContext.error("Locking failed.");
+                    }
+                } catch (final Exception e) {
+                    clean(callbackContext, e);
+                }
+            }
+        });
+    }
+
     private void fireTagEvent(Tag tag, String name) {
         String command = MessageFormat.format(javaScriptEventTemplate, name, byteArrayToJSON(tag.getId()));
         this.webView.sendJavascript(command);
@@ -362,7 +417,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
 
     private String bytesToHex(final byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
-        for ( int j = 0; j < bytes.length; j++ ) {
+        for (int j = 0; j < bytes.length; j++) {
             int v = bytes[j] & 0xFF;
             hexChars[j * 2] = hexArray[v >>> 4];
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
@@ -375,7 +430,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
             data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i+1), 16));
+                    + Character.digit(s.charAt(i + 1), 16));
         }
         return data;
     }
