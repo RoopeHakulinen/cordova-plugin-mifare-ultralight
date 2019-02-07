@@ -108,14 +108,14 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
             final String arg6 = args.getBoolean(6);
             final String arg7 = args.getString(7);
 
-            final int pinPage = Integer.parseInt(arg0)
-            final int pinAckPage = Integer.parseInt(arg1)
-            final int protectionPage = Integer.parseInt(arg2)
-            final int firstPageToBeProtectedPage = Integer.parseInt(arg3)
-            final int firstPageToBeProtected = Integer.parseInt(arg4)
-            final int pin = Integer.parseInt(arg5)
-            final boolean protectAlsoReads = arg6,
-            final int authenticationTryLimit = Integer.parseInt(arg7)
+            final int pinPage = Integer.parseInt(arg0);
+            final int pinAckPage = Integer.parseInt(arg1);
+            final int protectionPage = Integer.parseInt(arg2);
+            final int firstPageToBeProtectedPage = Integer.parseInt(arg3);
+            final int firstPageToBeProtected = Integer.parseInt(arg4);
+            final int pin = Integer.parseInt(arg5);
+            final boolean protectAlsoReads = arg6;
+            final int authenticationTryLimit = Integer.parseInt(arg7);
 
             this.lock(
                     callbackContext,
