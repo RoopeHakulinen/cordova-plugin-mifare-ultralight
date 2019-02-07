@@ -42,13 +42,13 @@ public class MifareUltralight {
             int protectionPage,
             int firstPageToBeProtectedPage,
             int firstPageToBeProtected,
-            int pin,
+            long pin,
             boolean protectAlsoReads,
             int authenticationTryLimit
     ) throws Exception {
         byte[] pack;
         // 1. Write the PIN
-        final byte[] pinAsByteArray = intToByteArray(pin);
+        final byte[] pinAsByteArray = longToByteArray(pin);
         byte[] response = mifare.writePage(page, pinAsByteArray);
         if ((response != null) && (response.length >= 2)) {
             pack = Arrays.copyOf(response, 2);

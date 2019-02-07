@@ -113,7 +113,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
             final int protectionPage = Integer.parseInt(arg2);
             final int firstPageToBeProtectedPage = Integer.parseInt(arg3);
             final int firstPageToBeProtected = Integer.parseInt(arg4);
-            final int pin = Integer.parseInt(arg5);
+            final long pin = Long.parseLong(arg5);
             final boolean protectAlsoReads = arg6;
             final int authenticationTryLimit = Integer.parseInt(arg7);
 
@@ -271,7 +271,7 @@ public class CordovaPluginMifareUltralight extends CordovaPlugin {
         });
     }
 
-    private void lock(final CallbackContext callbackContext, final int pin) {
+    private void lock(final CallbackContext callbackContext, final long pin) {
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
